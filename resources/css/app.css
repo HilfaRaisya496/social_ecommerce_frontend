@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* ========================================
+   RESPONSIVE DESIGN - Custom Styles
+   ======================================== */
+
+/* Custom Scrollbar Styling */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* Main Content Scrollbar */
+main::-webkit-scrollbar {
+    width: 8px;
+}
+
+main::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+main::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 10px;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+/* Ensure smooth transitions on mobile menu */
+@media (max-width: 1024px) {
+    aside {
+        /* Smooth slide animation on mobile */
+        transition-property: transform;
+        transition-duration: 300ms;
+    }
+    
+    /* Hide text labels in sidebar items on very small screens */
+    @media (max-width: 640px) {
+        aside .flex-col {
+            gap: 0.5rem;
+        }
+    }
+}
+
+/* Responsive Typography Scaling */
+@media (max-width: 768px) {
+    h1 {
+        @apply text-lg;
+    }
+    
+    h2 {
+        @apply text-base;
+    }
+    
+    p {
+        @apply text-sm;
+    }
+}
+
+/* Fix for safe area on notch devices */
+@supports (padding: max(10px)) {
+    body {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+}
+
+/* Responsive Grid Systems - untuk use di halaman */
+.grid-responsive {
+    @apply grid gap-4 md:gap-6 lg:gap-8;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+@media (max-width: 768px) {
+    .grid-responsive {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive Flex - untuk use di halaman */
+.flex-responsive {
+    @apply flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8;
+}
+
+/* Card Responsive Padding */
+.card-responsive {
+    @apply p-4 md:p-6 lg:p-8;
+}
+
+/* Button Responsive Sizing */
+.btn-responsive {
+    @apply px-3 md:px-4 py-2 md:py-3 text-xs md:text-sm;
+}
+
+/* Input Responsive Padding */
+.input-responsive {
+    @apply px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm;
+}
