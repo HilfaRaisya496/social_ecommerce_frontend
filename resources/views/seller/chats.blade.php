@@ -6,7 +6,8 @@
     <div x-data="chatSystem()" x-init="init()"
         class="bg-white rounded-xl shadow-sm border border-gray-100 h-[calc(100vh-12rem)] flex overflow-hidden">
         <!-- Sidebar Chats -->
-        <div class="w-80 border-r border-gray-200 flex flex-col">
+        <div class="w-full md:w-80 border-r border-gray-200 flex-col shrink-0 transition-all duration-300"
+            :class="selectedContact ? 'hidden md:flex' : 'flex'">
             <div class="p-4 border-b border-gray-200">
                 <h2 class="text-lg font-bold text-gray-900 mb-3">Daftar Chat</h2>
                 <div class="relative">
@@ -57,7 +58,8 @@
         </div>
 
         <!-- Chat Area -->
-        <div class="flex-1 flex flex-col bg-gray-50/20 relative">
+        <div class="flex-1 flex-col bg-gray-50/20 relative w-full transition-all duration-300"
+            :class="selectedContact ? 'flex' : 'hidden md:flex'">
             <!-- No Selected Contact -->
             <div x-show="!selectedContact" class="flex-1 flex flex-col items-center justify-center text-gray-500">
                 <div
@@ -72,7 +74,10 @@
             <div x-show="selectedContact" class="flex-1 flex flex-col overflow-hidden">
                 <!-- Chat Header -->
                 <div class="p-3 md:p-4 bg-white border-b border-gray-200 flex items-center justify-between gap-2">
-                    <div class="flex items-center gap-3 min-w-0">
+                    <div class="flex items-center gap-2 md:gap-3 min-w-0">
+                        <button @click="selectedContact = null" class="md:hidden p-2 -ml-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors" title="Kembali ke daftar">
+                            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                        </button>
                         <div
                             class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center overflow-hidden flex-shrink-0">
                             <img x-show="selectedContact?.avatar" :src="selectedContact?.avatar"
