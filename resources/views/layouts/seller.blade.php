@@ -212,8 +212,7 @@
                     <div class="relative z-10">
                         <h4 class="text-xs font-bold text-amber-400 opacity-80 uppercase tracking-widest mb-1">Pusat
                             Bantuan</h4>
-                        <p class="text-[10px] opacity-90 leading-relaxed mb-3">Butuh bantuan? CS kami siap membantu
-                            24/7.</p>
+                        <p class="text-[10px] opacity-90 leading-relaxed mb-3">Butuh bantuan? CS kami siap membantu.</p>
                         <button @click="contactSupport()"
                             class="w-full bg-amber-500 text-white hover:bg-amber-600 text-[10px] font-bold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-2 shadow-sm border-none">
                             <i data-lucide="headphones" class="w-3 h-3 text-emerald-900"></i>

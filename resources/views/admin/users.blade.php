@@ -4,6 +4,11 @@
 
 @section('content')
     <div class="space-y-6">
+        @php
+            $newUsersThisMonth = collect($users)->filter(function($user) {
+                return \Carbon\Carbon::parse($user['created_at'])->isCurrentMonth();
+            })->count();
+        @endphp
         {{-- Stats Overview --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
@@ -35,7 +40,7 @@
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-500">Baru Bulan Ini</p>
-                        <h3 class="text-2xl font-bold text-gray-900">0</h3>
+                        <h3 class="text-2xl font-bold text-gray-900">{{ $newUsersThisMonth }}</h3>
                     </div>
                 </div>
             </div>

@@ -50,8 +50,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/vouchers/{id}/edit', [VoucherController::class, 'edit'])->name('admin.vouchers.edit');
     Route::put('/vouchers/{id}', [VoucherController::class, 'update'])->name('admin.vouchers.update');
     Route::delete('/vouchers/{id}', [VoucherController::class, 'destroy'])->name('admin.vouchers.destroy');
-    Route::get('/monitoring', [DashboardController::class, 'adminMonitoring'])->name('admin.monitoring');
-    Route::get('/reports', [DashboardController::class, 'adminReports'])->name('admin.reports');
+
     Route::get('/settings', [DashboardController::class, 'adminSettings'])->name('admin.settings');
     Route::get('/chats', [DashboardController::class, 'adminChats'])->name('admin.chats');
     Route::delete('/users/{id}', [DashboardController::class, 'deleteUser'])->name('admin.users.delete');
