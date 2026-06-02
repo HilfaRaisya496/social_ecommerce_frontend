@@ -60,9 +60,9 @@
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto max-h-[500px] overflow-y-auto custom-scrollbar">
                 <table class="w-full" id="sellerTable">
-                    <thead>
+                    <thead class="sticky top-0 z-10 bg-white shadow-sm">
                         <tr class="bg-gray-50/50">
                             <th class="text-left py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Toko /
                                 Seller</th>

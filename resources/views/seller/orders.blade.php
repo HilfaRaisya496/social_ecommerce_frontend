@@ -20,9 +20,9 @@
             </div>
 
             <div id="ordersTableContainer">
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
+                <div class="overflow-x-auto max-h-[500px] overflow-y-auto custom-scrollbar">
+                    <table class="w-full relative">
+                        <thead class="sticky top-0 z-10 bg-white shadow-sm">
                             <tr class="border-b border-gray-100">
                                 <th class="text-left py-3 px-4 text-sm font-medium text-gray-500">ID Pesanan</th>
                                 <th class="text-left py-3 px-4 text-sm font-medium text-gray-500">Pelanggan</th>
