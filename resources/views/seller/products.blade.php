@@ -52,9 +52,9 @@
                 </form>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto max-h-[500px] overflow-y-auto custom-scrollbar">
                 <table class="w-full">
-                    <thead>
+                    <thead class="sticky top-0 z-10 bg-white shadow-sm">
                         <tr class="bg-gray-50/30">
                             <th class="text-left py-4 px-6 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
                                 Produk</th>
