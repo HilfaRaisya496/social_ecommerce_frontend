@@ -105,7 +105,7 @@
                                 </td>
                                 <td class="py-4 px-6">
                                     <p class="text-xs text-gray-600 line-clamp-1 max-w-[150px]">
-                                        {{ $seller['address'] ?? 'Belum diatur' }}
+                                        {{ $seller['main_address'] ?? 'Belum diatur' }}
                                     </p>
                                 </td>
                                 <td class="py-4 px-6 text-sm text-gray-500">

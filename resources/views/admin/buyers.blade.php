@@ -105,7 +105,7 @@
                                 </td>
                                 <td class="py-4 px-6">
                                     <p class="text-xs text-gray-600 line-clamp-1 max-w-[150px]">
-                                        {{ $user['address'] ?? 'Belum diatur' }}</p>
+                                        {{ $user['main_address'] ?? 'Belum diatur' }}</p>
                                 </td>
                                 <td class="py-4 px-6 text-sm text-gray-500">
                                     {{ \Carbon\Carbon::parse($user['created_at'])->format('d M Y') }}

@@ -122,7 +122,7 @@
                                 <div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center">
                                     <i data-lucide="map-pin" class="w-4 h-4 text-amber-600"></i>
                                 </div>
-                                <p class="text-sm font-bold text-gray-900">{{ $user['address'] ?? 'Belum diatur' }}</p>
+                                <p class="text-sm font-bold text-gray-900">{{ $user['main_address'] ?? 'Belum diatur' }}</p>
                             </div>
                         </div>
                     </div>
