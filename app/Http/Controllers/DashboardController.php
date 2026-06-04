@@ -625,20 +625,6 @@ class DashboardController extends Controller
         }
     }
 
-    public function sellerDestroyProduct($id)
-    {
-        $token = session('api_token');
-        try {
-            $response = Http::withToken($token)->delete($this->apiBaseUrl . '/products/' . $id);
-            if ($response->successful()) {
-                return redirect()->route('seller.products')->with('success', 'Produk Zeven berhasil dihapus!');
-            }
-            return back()->with('error', $response->json()['message'] ?? 'Gagal menghapus produk');
-        } catch (\Exception $e) {
-            return back()->with('error', 'Koneksi ke API Backend gagal');
-        }
-    }
-
     // --- WITHDRAWALS (SELLER) ---
     public function sellerWithdrawals()
     {

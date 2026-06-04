@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use Carbon\Carbon;
 
 class VoucherController extends Controller
 {
@@ -58,13 +57,13 @@ class VoucherController extends Controller
             $response = Http::withToken($token)->post($this->apiBaseUrl . '/vouchers', $request->all());
 
             if ($response->successful()) {
-                return redirect('/admin/vouchers')->with('success', 'Voucher berhasil dibuat!');
+                return redirect()->route('admin.vouchers')->with('success', 'Voucher berhasil dibuat!');
             }
 
             $message = $response->json('message') ?? 'Gagal membuat voucher (API Error).';
-            return redirect('/admin/vouchers')->with('error', $message);
+            return redirect()->route('admin.vouchers')->with('error', $message);
         } catch (\Exception $e) {
-            return redirect('/admin/vouchers')->with('error', 'Koneksi ke API Backend gagal: ' . $e->getMessage());
+            return redirect()->route('admin.vouchers')->with('error', 'Koneksi ke API Backend gagal: ' . $e->getMessage());
         }
     }
 
@@ -81,9 +80,9 @@ class VoucherController extends Controller
                     return view('admin.vouchers_edit', compact('voucher'));
                 }
             }
-            return redirect('/admin/vouchers')->with('error', 'Voucher tidak ditemukan.');
+            return redirect()->route('admin.vouchers')->with('error', 'Voucher tidak ditemukan.');
         } catch (\Exception $e) {
-            return redirect('/admin/vouchers')->with('error', 'Koneksi ke API gagal.');
+            return redirect()->route('admin.vouchers')->with('error', 'Koneksi ke API gagal.');
         }
     }
 
@@ -104,13 +103,13 @@ class VoucherController extends Controller
             $response = Http::withToken($token)->put($this->apiBaseUrl . '/vouchers/' . $id, $request->all());
 
             if ($response->successful()) {
-                return redirect('/admin/vouchers')->with('success', 'Voucher berhasil diperbarui!');
+                return redirect()->route('admin.vouchers')->with('success', 'Voucher berhasil diperbarui!');
             }
 
             $message = $response->json('message') ?? 'Gagal memperbarui voucher.';
-            return redirect('/admin/vouchers')->with('error', $message);
+            return redirect()->route('admin.vouchers')->with('error', $message);
         } catch (\Exception $e) {
-            return redirect('/admin/vouchers')->with('error', 'Koneksi API gagal: ' . $e->getMessage());
+            return redirect()->route('admin.vouchers')->with('error', 'Koneksi API gagal: ' . $e->getMessage());
         }
     }
 
@@ -122,13 +121,13 @@ class VoucherController extends Controller
             $response = Http::withToken($token)->delete($this->apiBaseUrl . '/vouchers/' . $id);
 
             if ($response->successful()) {
-                return redirect('/admin/vouchers')->with('success', 'Voucher berhasil dihapus!');
+                return redirect()->route('admin.vouchers')->with('success', 'Voucher berhasil dihapus!');
             }
 
             $message = $response->json('message') ?? 'Gagal menghapus voucher.';
-            return redirect('/admin/vouchers')->with('error', $message);
+            return redirect()->route('admin.vouchers')->with('error', $message);
         } catch (\Exception $e) {
-            return redirect('/admin/vouchers')->with('error', 'Koneksi API gagal: ' . $e->getMessage());
+            return redirect()->route('admin.vouchers')->with('error', 'Koneksi API gagal: ' . $e->getMessage());
         }
     }
 }

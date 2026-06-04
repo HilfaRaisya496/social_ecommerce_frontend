@@ -2,16 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VoucherController;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
-
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,8 +29,6 @@ Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallbac
 // Profile Routes
 Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
 Route::post('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar');
-
-use App\Http\Controllers\VoucherController;
 
 // Admin Routes
 Route::prefix('admin')->group(function () {

@@ -16,6 +16,23 @@ class AuthController extends Controller
         $this->apiBaseUrl = env('BACKEND_API_URL');
     }
 
+    /**
+     * Bangun avatar URL lengkap berdasarkan data user dari API.
+     */
+    private function buildAvatarUrl(array $user): ?string
+    {
+        $backendUrl = env('BACKEND_URL', 'http://192.168.100.6:8001');
+        $image = $user['profile_image'] ?? $user['avatar'] ?? null;
+
+        if (!$image) {
+            return null;
+        }
+
+        return str_starts_with($image, 'http')
+            ? $image
+            : $backendUrl . '/storage/' . $image;
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -33,24 +50,7 @@ class AuthController extends Controller
             if ($response->successful()) {
                 $data = $response->json();
                 $user = $data['user'];
-
-                // Konstruksi URL Avatar agar terbaca di Frontend (Cek agar tidak dobel URL)
-                if (!empty($user['profile_image'])) {
-                    if (str_starts_with($user['profile_image'], 'http')) {
-                        $user['avatar_url'] = $user['profile_image'];
-                    } else {
-                        $backendUrl = env('BACKEND_URL', 'http://192.168.100.6:8001');
-                        $user['avatar_url'] = $backendUrl . '/storage/' . $user['profile_image'];
-                    }
-                } else if (!empty($user['avatar'])) {
-                    // Fallback to 'avatar' field if profile_image is empty
-                    if (str_starts_with($user['avatar'], 'http')) {
-                        $user['avatar_url'] = $user['avatar'];
-                    } else {
-                        $backendUrl = env('BACKEND_URL', 'http://192.168.100.6:8001');
-                        $user['avatar_url'] = $backendUrl . '/storage/' . $user['avatar'];
-                    }
-                }
+                $user['avatar_url'] = $this->buildAvatarUrl($user);
 
                 // Simpan Token dan Data User di Session Frontend
                 Session::put('api_token', $data['token']);
@@ -140,23 +140,7 @@ class AuthController extends Controller
             if ($response->successful()) {
                 $data = $response->json();
                 $user = $data['user'];
-
-                // Konstruksi URL Avatar agar terbaca di Frontend
-                if (!empty($user['profile_image'])) {
-                    if (str_starts_with($user['profile_image'], 'http')) {
-                        $user['avatar_url'] = $user['profile_image'];
-                    } else {
-                        $backendUrl = env('BACKEND_URL', 'http://192.168.100.6:8001');
-                        $user['avatar_url'] = $backendUrl . '/storage/' . $user['profile_image'];
-                    }
-                } else if (!empty($user['avatar'])) {
-                    if (str_starts_with($user['avatar'], 'http')) {
-                        $user['avatar_url'] = $user['avatar'];
-                    } else {
-                        $backendUrl = env('BACKEND_URL', 'http://192.168.100.6:8001');
-                        $user['avatar_url'] = $backendUrl . '/storage/' . $user['avatar'];
-                    }
-                }
+                $user['avatar_url'] = $this->buildAvatarUrl($user);
 
                 Session::put('api_token', $data['token']);
                 Session::put('user', $user);

@@ -15,6 +15,23 @@ class ProfileController extends Controller
         $this->apiBaseUrl = env('BACKEND_API_URL');
     }
 
+    /**
+     * Bangun avatar URL lengkap berdasarkan data user dari API.
+     */
+    private function buildAvatarUrl(array $user): ?string
+    {
+        $backendUrl = env('BACKEND_URL', 'http://192.168.100.6:8001');
+        $image = $user['profile_image'] ?? $user['avatar'] ?? null;
+
+        if (!$image) {
+            return null;
+        }
+
+        return str_starts_with($image, 'http')
+            ? $image
+            : $backendUrl . '/storage/' . $image;
+    }
+
     public function updateProfile(Request $request)
     {
         $request->validate([
@@ -46,17 +63,8 @@ class ProfileController extends Controller
                 $updatedUser = $response->json('user');
 
                 // Pertahankan avatar_url agar foto profil tidak hilang setelah update
-                if (!empty($updatedUser['profile_image'])) {
-                    if (str_starts_with($updatedUser['profile_image'], 'http')) {
-                        $updatedUser['avatar_url'] = $updatedUser['profile_image'];
-                    } else {
-                        $backendUrl = env('BACKEND_URL', 'http://192.168.100.6:8001');
-                        $updatedUser['avatar_url'] = $backendUrl . '/storage/' . $updatedUser['profile_image'];
-                    }
-                } else {
-                    // Jaga avatar_url lama jika profile_image tidak ada di response
-                    $updatedUser['avatar_url'] = Session::get('user.avatar_url');
-                }
+                $updatedUser['avatar_url'] = $this->buildAvatarUrl($updatedUser)
+                    ?? Session::get('user.avatar_url');
 
                 Session::put('user', $updatedUser);
 
@@ -88,12 +96,7 @@ class ProfileController extends Controller
                 $updatedUser = $data['user'];
 
                 // Simpan full URL avatar agar bisa ditampilkan di Frontend
-                if (str_starts_with($updatedUser['profile_image'], 'http')) {
-                    $updatedUser['avatar_url'] = $updatedUser['profile_image'];
-                } else {
-                    $backendUrl = env('BACKEND_URL', 'http://192.168.100.6:8001');
-                    $updatedUser['avatar_url'] = $backendUrl . '/storage/' . $updatedUser['profile_image'];
-                }
+                $updatedUser['avatar_url'] = $this->buildAvatarUrl($updatedUser);
 
                 Session::put('user', $updatedUser);
 
