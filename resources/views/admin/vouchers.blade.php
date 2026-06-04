@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto max-h-[500px] overflow-y-auto custom-scrollbar">
                 <table class="w-full" id="voucherTable">
                     <thead>
                         <tr class="bg-gray-50/50">

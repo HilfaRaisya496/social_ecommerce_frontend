@@ -31,7 +31,7 @@
 
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto max-h-[500px] overflow-y-auto custom-scrollbar">
                 <table class="w-full">
                     <thead>
                         <tr class="border-b border-gray-100">

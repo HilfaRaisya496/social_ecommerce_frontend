@@ -38,7 +38,7 @@
         <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
             <h3 class="font-bold text-gray-900">Riwayat Penarikan Dana</h3>
         </div>
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto max-h-[500px] overflow-y-auto custom-scrollbar">
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-gray-50 border-b border-gray-100">
